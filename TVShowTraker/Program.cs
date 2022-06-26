@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using TVShowTraker.Helpers;
-using TVShowTraker.Middlewares;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Contexts;
 using TVShowTraker.Models.ViewModels;
@@ -9,50 +11,66 @@ using TVShowTraker.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
-var conStr = configuration.GetConnectionString("ConStr");
 
 // Add services to the container.
+builder.Services.AddScoped<IAuthenticateService, AuthenticateService>();
+
+
+// For Entity Framework
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ConnStr")));
+
+// For Identity
+builder.Services.AddIdentity<ApplicationUser , IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+
+// Adding Authentication
+builder.Services.AddAuthentication(options =>
 {
-    var services = builder.Services;
-    services.AddCors();
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
 
-    // For Entity Framework
-    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(conStr));
+// Adding Jwt Bearer
+.AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ClockSkew = TimeSpan.Zero,
 
+        ValidAudience = configuration["JWT:ValidAudience"],
+        ValidIssuer = configuration["JWT:ValidIssuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
+    };
+});
 
-    services.AddControllers();
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-    services.AddEndpointsApiExplorer();
-    services.AddSwaggerGen();
-
-    // configure strongly typed settings object
-    services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-
-    services.AddScoped<IAuthService, AuthenticationService>();
-    services.AddScoped<IBaseService<User, UserVM>, UserService>();
-}
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
 {
-    app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
-
-    // custom jwt auth middleware
-    app.UseMiddleware<JwtMiddleware>();
-    // global error handler
-    app.UseMiddleware<ErrorHandlerMiddleware>();
-
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-    }
-
-    app.MapControllers();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
+
+// Authentication & Authorization
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();

@@ -15,6 +15,6 @@ namespace TVShowTraker.Models.Contexts
             base.OnModelCreating(builder);
         }
 
-        DbSet<User> User { get; set; }
+        DbSet<ApplicationUser > User { get; set; }
     }
 }
