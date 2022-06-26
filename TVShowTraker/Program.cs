@@ -1,16 +1,25 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using TVShowTraker.Models;
+using TVShowTraker._4.Helpers.Mappers;
+using TVShowTraker.Models.Auth;
 using TVShowTraker.Models.Contexts;
-using TVShowTraker.Models.ViewModels;
 using TVShowTraker.Services;
 using TVShowTraker.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
+
+// AutoMapper
+{
+    var mapperConfig = new MapperConfiguration(c => c.AddProfile(new AutoMapperProfile()));
+    var mapper = mapperConfig.CreateMapper();
+
+    builder.Services.AddSingleton(mapper);
+}
 
 // Add services to the container.
 builder.Services.AddScoped<IAuthenticateService, AuthenticateService>();

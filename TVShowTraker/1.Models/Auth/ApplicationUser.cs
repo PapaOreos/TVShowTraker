@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace TVShowTraker.Models
+namespace TVShowTraker.Models.Auth
 {
     public class ApplicationUser : IdentityUser
     {

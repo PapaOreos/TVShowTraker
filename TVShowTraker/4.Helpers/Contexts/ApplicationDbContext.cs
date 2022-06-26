@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TVShowTraker.Models.Auth;
 
 namespace TVShowTraker.Models.Contexts
 {
@@ -15,6 +16,9 @@ namespace TVShowTraker.Models.Contexts
             base.OnModelCreating(builder);
         }
 
-        DbSet<ApplicationUser > User { get; set; }
+        DbSet<ApplicationUser> User { get; set; }
+        DbSet<Episode> Episodes { get; set; }
+        DbSet<Genre> Genres { get; set; }
+        DbSet<TVShow> TVShows { get; set; }
     }
 }

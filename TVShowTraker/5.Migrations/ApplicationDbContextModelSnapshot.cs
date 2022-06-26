@@ -226,7 +226,128 @@ namespace TVShowTraker.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("TVShowTraker.Models.ApplicationUser", b =>
+            modelBuilder.Entity("TVShowTraker.Models.Episode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("AirDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EpisodeNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Season")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TVShowId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TVShowId");
+
+                    b.ToTable("Episodes");
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.Genre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TVShowId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TVShowId");
+
+                    b.ToTable("Genres");
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.TVShow", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageThumbnailPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Network")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Permalink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("RateCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Runtime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YoutubeLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TVShows");
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.Auth.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -289,6 +410,27 @@ namespace TVShowTraker.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.Episode", b =>
+                {
+                    b.HasOne("TVShowTraker.Models.TVShow", null)
+                        .WithMany("Episodes")
+                        .HasForeignKey("TVShowId");
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.Genre", b =>
+                {
+                    b.HasOne("TVShowTraker.Models.TVShow", null)
+                        .WithMany("Geners")
+                        .HasForeignKey("TVShowId");
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.TVShow", b =>
+                {
+                    b.Navigation("Episodes");
+
+                    b.Navigation("Geners");
                 });
 #pragma warning restore 612, 618
         }

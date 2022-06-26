@@ -6,6 +6,7 @@ namespace TVShowTraker.Services.Interfaces
     {
         List<V> GetAll();
         V Get(int id);
+        M GetById(int id);
         ResponseModel Create(M model);
         ResponseModel Update(M model);
         ResponseModel Delete(int id);
