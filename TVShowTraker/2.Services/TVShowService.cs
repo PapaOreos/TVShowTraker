@@ -1,126 +1,119 @@
 ﻿using AutoMapper;
-using TVShowTraker.Exceptions;
-using TVShowTraker.Helpers.Exceptions;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Contexts;
 using TVShowTraker.Models.ViewModels;
 using TVShowTraker.Services.Interfaces;
 namespace TVShowTraker.Services
 {
-    public class TVShowService : IBaseService<TVShow, TVShowVM>
+    public class TVShowService : BaseService<TVShow, TVShowVM>
     {
-
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
+        private readonly GenreService _genreService;
 
         public TVShowService(
             ApplicationDbContext context,
-            IMapper mapper)
+            IMapper mapper) : base(context, mapper)
         {
             _context = context;
             _mapper = mapper;
+            _genreService = new GenreService(_context, _mapper);
         }
 
-        public ResponseModel Create(TVShow model)
+        public override List<TVShowVM> GetAllVM()
         {
-            var result = _context.Set<TVShow>().Update(model);
-
-            if (result == null)
-                throw new AppException(string.Format(ExceptionMessages.ModelCreateError, typeof(TVShow).Name));
-
-            _context.SaveChanges();
-            return new ResponseModel()
-            {
-                Message = string.Format(ExceptionMessages.ModelCreateSuccess, typeof(TVShow).Name),
-                Status = ExceptionMessages.Success
-            };
+            return base.GetAllVM();
         }
 
-        public ResponseModel Delete(int id)
+        public override TVShowVM GetVM(int id)
         {
-            if (id <= 0)
-                throw new ArgumentException(string.Format(ExceptionMessages.ModelIdInvalid, typeof(TVShow).Name));
+            var model = Get(id);
 
-            var model = GetById(id);
-            var result = _context.Set<TVShow>().Remove(model);
-
-            if (result == null)
-                throw new AppException(string.Format(ExceptionMessages.ModelDeleteError, typeof(TVShow).Name));
-
-            _context.SaveChanges();
-            return new ResponseModel()
-            {
-                Message = string.Format(ExceptionMessages.ModelDeleteSuccess, typeof(TVShow).Name),
-                Status = ExceptionMessages.Success
-            };
-        }
-
-        public TVShowVM Get(int id)
-        {
-            var model = GetById(id);
+            model.Episodes = GetEpisodesByTVShowId(id);
+            model.Genres = GetGenresByTVShowId(id);
 
             return _mapper.Map<TVShowVM>(model);
         }
 
-        public List<TVShowVM> GetAll()
+        public override ResponseModel CreateVM(TVShowVM viewModel)
         {
-            List<TVShowVM> vmList = new List<TVShowVM>();
-            var modelList = _context.Set<TVShow>().ToList();
-            modelList.ForEach(model => vmList.Add(_mapper.Map<TVShowVM>(model)));
+            if (viewModel == null)
+                throw new ArgumentNullException();
 
-            return vmList;
+            CreateGenresIfNeeded(viewModel.Genres);
+
+            var model = GetParsedModelFromVM(viewModel);
+
+            return base.Create(model);
         }
 
-        public ResponseModel Update(TVShow model)
+        public override ResponseModel UpdateVM(TVShowVM viewModel)
         {
-            var savedModel = GetById(model.Id);
-            if (savedModel == null)
-                throw new AppException(string.Format(ExceptionMessages.ModelNotExist, typeof(TVShow).Name));
+            if (viewModel == null)
+                throw new ArgumentNullException();
 
-            savedModel.Description = model.Description;
-            savedModel.Rate = model.Rate;
-            savedModel.Name = model.Name;
-            savedModel.Permalink = model.Permalink;
-            savedModel.Url = model.Url;
-            savedModel.Description = model.Description;
-            savedModel.StartDate = model.StartDate;
-            savedModel.EndDate = model.EndDate;
-            savedModel.Country = model.Country;
-            savedModel.Status = model.Status;
-            savedModel.Runtime = model.Runtime;
-            savedModel.Network = model.Network;
-            savedModel.YoutubeLink = model.YoutubeLink;
-            savedModel.ImagePath = model.ImagePath;
-            savedModel.ImageThumbnailPath = model.ImageThumbnailPath;
-            savedModel.Rate = model.Rate;
-            savedModel.RateCount = model.RateCount;
-            savedModel.Geners = model.Geners;
-            savedModel.Episodes = model.Episodes;
+            CreateGenresIfNeeded(viewModel.Genres);
 
-            var result = _context.Set<TVShow>().Update(savedModel);
+            var model = GetParsedModelFromVM(viewModel);
+            return base.Update(model);
+        }
 
-            if (result == null)
-                throw new AppException(string.Format(ExceptionMessages.ModelUpdateError, typeof(TVShow).Name));
+        private List<Episode> GetEpisodesByTVShowId(int id) =>
+            _context.Set<Episode>().Where(e => e.TVShow.Id == id).ToList();
 
-            _context.SaveChanges();
-            return new ResponseModel()
+        private ICollection<TVShowGenre> GetGenresByTVShowId(int id)
+        {
+            var genres = _context.Set<TVShowGenre>().Where(x => x.TVShow.Id == id).ToList();
+            genres.ForEach(g => g.Genre = _genreService.Get(g.GenreId));
+
+            return genres;
+        }
+
+        private void CreateGenresIfNeeded(ICollection<GenreVM> genres)
+        {
+            genres.ToList().ForEach(genre =>
             {
-                Message = string.Format(ExceptionMessages.ModelUpdateSuccess, typeof(TVShow).Name),
-                Status = ExceptionMessages.Success
-            };
+                if (_genreService.GetByGenreDescription(genre.Description) == null)
+                {
+                    _genreService.CreateVM(genre);
+                }
+            });
         }
 
-        public TVShow GetById(int id)
+        private TVShow GetParsedModelFromVM(TVShowVM viewModel)
         {
-            if (id <= 0)
-                throw new ArgumentException(string.Format(ExceptionMessages.ModelIdInvalid, typeof(TVShow).Name));
+            var model = new TVShow()
+            {
+                Id = viewModel.Id,
+                Name = viewModel.Name,
+                Permalink = viewModel.Permalink,
+                Url = viewModel.Url,
+                Description = viewModel.Description,
+                StartDate = viewModel.StartDate,
+                EndDate = viewModel.EndDate,
+                Country = viewModel.Country,
+                Status = viewModel.Status,
+                Runtime = viewModel.Runtime,
+                Network = viewModel.Network,
+                YoutubeLink = viewModel.YoutubeLink,
+                ImagePath = viewModel.ImagePath,
+                ImageThumbnailPath = viewModel.ImageThumbnailPath,
+                Rating = viewModel.Rating,
+                RateCount = viewModel.RateCount,
+            };
+            model.Episodes = new List<Episode>();
+            viewModel.Episodes.ForEach(e => model.Episodes.Add(_mapper.Map<Episode>(e)));
+            model.Genres = new List<TVShowGenre>();
+            viewModel.Genres.ForEach(g =>
+                model.Genres.Add(
+                    new TVShowGenre()
+                    {
+                        Genre = _genreService.GetByGenreDescription(g.Description),
+                        TVShow = model
+                    }));
 
-            var TVShow = _context.Set<TVShow>().Find(id);
-
-            if (TVShow == null)
-                throw new AppException(string.Format(ExceptionMessages.ModelNotExist, typeof(TVShow).Name));
-
-            return TVShow;
+            return model;
         }
+
     }
 }

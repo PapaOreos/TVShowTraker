@@ -12,7 +12,7 @@ using TVShowTraker.Models.Contexts;
 namespace TVShowTraker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220626175047_Initial")]
+    [Migration("20220627154500_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -228,7 +228,142 @@ namespace TVShowTraker.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("TVShowTraker.Models.ApplicationUser", b =>
+            modelBuilder.Entity("TVShowTraker.Models.Episode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("AirDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EpisodeNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Season")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TVShowId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TVShowId");
+
+                    b.ToTable("Episodes");
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.Genre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genres");
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.TVShow", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageThumbnailPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Network")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Permalink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RateCount")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Rating")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Runtime")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YoutubeLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TVShows");
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.TVShowGenre", b =>
+                {
+                    b.Property<int>("TVShowId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TVShowId1")
+                        .HasColumnType("int");
+
+                    b.HasKey("TVShowId", "GenreId");
+
+                    b.HasIndex("GenreId");
+
+                    b.HasIndex("TVShowId1");
+
+                    b.ToTable("TVShowsGenres");
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.Auth.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -291,6 +426,47 @@ namespace TVShowTraker.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.Episode", b =>
+                {
+                    b.HasOne("TVShowTraker.Models.TVShow", "TVShow")
+                        .WithMany("Episodes")
+                        .HasForeignKey("TVShowId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TVShow");
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.TVShowGenre", b =>
+                {
+                    b.HasOne("TVShowTraker.Models.Genre", "Genre")
+                        .WithMany()
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TVShowTraker.Models.TVShow", "TVShow")
+                        .WithMany()
+                        .HasForeignKey("TVShowId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TVShowTraker.Models.TVShow", null)
+                        .WithMany("Genres")
+                        .HasForeignKey("TVShowId1");
+
+                    b.Navigation("Genre");
+
+                    b.Navigation("TVShow");
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.TVShow", b =>
+                {
+                    b.Navigation("Episodes");
+
+                    b.Navigation("Genres");
                 });
 #pragma warning restore 612, 618
         }

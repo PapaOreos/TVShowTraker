@@ -52,6 +52,46 @@ namespace TVShowTraker.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Genres",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Genres", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TVShows",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Permalink = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Runtime = table.Column<int>(type: "int", nullable: false),
+                    Network = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    YoutubeLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageThumbnailPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rating = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RateCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TVShows", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -157,6 +197,59 @@ namespace TVShowTraker.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Episodes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Season = table.Column<int>(type: "int", nullable: false),
+                    EpisodeNumber = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AirDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TVShowId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Episodes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Episodes_TVShows_TVShowId",
+                        column: x => x.TVShowId,
+                        principalTable: "TVShows",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TVShowsGenres",
+                columns: table => new
+                {
+                    TVShowId = table.Column<int>(type: "int", nullable: false),
+                    GenreId = table.Column<int>(type: "int", nullable: false),
+                    TVShowId1 = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TVShowsGenres", x => new { x.TVShowId, x.GenreId });
+                    table.ForeignKey(
+                        name: "FK_TVShowsGenres_Genres_GenreId",
+                        column: x => x.GenreId,
+                        principalTable: "Genres",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TVShowsGenres_TVShows_TVShowId",
+                        column: x => x.TVShowId,
+                        principalTable: "TVShows",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TVShowsGenres_TVShows_TVShowId1",
+                        column: x => x.TVShowId1,
+                        principalTable: "TVShows",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -195,6 +288,21 @@ namespace TVShowTraker.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Episodes_TVShowId",
+                table: "Episodes",
+                column: "TVShowId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TVShowsGenres_GenreId",
+                table: "TVShowsGenres",
+                column: "GenreId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TVShowsGenres_TVShowId1",
+                table: "TVShowsGenres",
+                column: "TVShowId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -215,10 +323,22 @@ namespace TVShowTraker.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Episodes");
+
+            migrationBuilder.DropTable(
+                name: "TVShowsGenres");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Genres");
+
+            migrationBuilder.DropTable(
+                name: "TVShows");
         }
     }
 }

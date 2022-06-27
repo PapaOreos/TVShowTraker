@@ -14,11 +14,23 @@ namespace TVShowTraker.Models.Contexts
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<TVShowGenre>().HasKey(tg => new { tg.TVShowId, tg.GenreId });
+
+            builder.Entity<TVShowGenre>()
+                .HasOne(sc => sc.TVShow)
+                .WithMany()
+                .HasForeignKey(sc => sc.TVShowId);
+            builder.Entity<TVShowGenre>()
+                .HasOne(sc => sc.Genre)
+                .WithMany()
+                .HasForeignKey(sc => sc.GenreId);
         }
 
         DbSet<ApplicationUser> User { get; set; }
         DbSet<Episode> Episodes { get; set; }
         DbSet<Genre> Genres { get; set; }
         DbSet<TVShow> TVShows { get; set; }
+        DbSet<TVShowGenre> TVShowsGenres { get; set; }
     }
 }

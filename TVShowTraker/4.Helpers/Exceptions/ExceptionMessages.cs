@@ -9,6 +9,8 @@
         public static readonly string ModelDeleteSuccess = "{0} deleted successfully";
         public static readonly string ModelIdInvalid = "{0} Id not valid";
         public static readonly string ModelNotExist = "{0} not exist";
+        public static readonly string ModelNotCreatedDueToAlreadyExistInDB = "{0} not created, there is already in database";
+        public static readonly string ModelAlreadyExist = "{0} already exist";
         public static readonly string ModelCreateError = "Error creating {0}";
         public static readonly string ModelUpdateError = "Error Updatign {0}";
         public static readonly string ModelDeleteError = "Error deleting {0}";

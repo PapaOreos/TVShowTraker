@@ -247,7 +247,7 @@ namespace TVShowTraker.Migrations
                     b.Property<int>("Season")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TVShowId")
+                    b.Property<int>("TVShowId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -269,12 +269,7 @@ namespace TVShowTraker.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TVShowId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TVShowId");
 
                     b.ToTable("Genres");
                 });
@@ -318,15 +313,14 @@ namespace TVShowTraker.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Rate")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("RateCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Runtime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Rating")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Runtime")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -345,6 +339,26 @@ namespace TVShowTraker.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TVShows");
+                });
+
+            modelBuilder.Entity("TVShowTraker.Models.TVShowGenre", b =>
+                {
+                    b.Property<int>("TVShowId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TVShowId1")
+                        .HasColumnType("int");
+
+                    b.HasKey("TVShowId", "GenreId");
+
+                    b.HasIndex("GenreId");
+
+                    b.HasIndex("TVShowId1");
+
+                    b.ToTable("TVShowsGenres");
                 });
 
             modelBuilder.Entity("TVShowTraker.Models.Auth.ApplicationUser", b =>
@@ -414,23 +428,43 @@ namespace TVShowTraker.Migrations
 
             modelBuilder.Entity("TVShowTraker.Models.Episode", b =>
                 {
-                    b.HasOne("TVShowTraker.Models.TVShow", null)
+                    b.HasOne("TVShowTraker.Models.TVShow", "TVShow")
                         .WithMany("Episodes")
-                        .HasForeignKey("TVShowId");
+                        .HasForeignKey("TVShowId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TVShow");
                 });
 
-            modelBuilder.Entity("TVShowTraker.Models.Genre", b =>
+            modelBuilder.Entity("TVShowTraker.Models.TVShowGenre", b =>
                 {
+                    b.HasOne("TVShowTraker.Models.Genre", "Genre")
+                        .WithMany()
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TVShowTraker.Models.TVShow", "TVShow")
+                        .WithMany()
+                        .HasForeignKey("TVShowId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("TVShowTraker.Models.TVShow", null)
-                        .WithMany("Geners")
-                        .HasForeignKey("TVShowId");
+                        .WithMany("Genres")
+                        .HasForeignKey("TVShowId1");
+
+                    b.Navigation("Genre");
+
+                    b.Navigation("TVShow");
                 });
 
             modelBuilder.Entity("TVShowTraker.Models.TVShow", b =>
                 {
                     b.Navigation("Episodes");
 
-                    b.Navigation("Geners");
+                    b.Navigation("Genres");
                 });
 #pragma warning restore 612, 618
         }
