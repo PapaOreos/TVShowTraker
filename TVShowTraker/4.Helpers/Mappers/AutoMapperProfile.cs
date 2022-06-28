@@ -9,29 +9,22 @@ namespace TVShowTraker._4.Helpers.Mappers
     {
         public AutoMapperProfile()
         {
-            //Episode -> EpisodeVM
+            //Episode <-> EpisodeVM
             CreateMap<Episode, EpisodeVM>().ReverseMap();
-            //EpisodeVM -> Episode
-            //CreateMap<EpisodeVM, Episode>().ReverseMap();
 
 
-            //Genre -> GenreVM
+            //Genre <-> GenreVM
             CreateMap<Genre, GenreVM>().ReverseMap();
-            //GenreVM -> Genre
-            //CreateMap<GenreVM, Genre>().ReverseMap();
 
 
-            //TVShow -> TVShowVM
+            //TVShow <-> TVShowVM
             CreateMap<TVShow, TVShowVM>().ReverseMap();
-            //TVShowVM -> TVShow
-            //CreateMap<TVShowVM, TVShow>().ReverseMap();
 
 
-            //TVShowVM -> TVShowVM
             CreateMap<GenreVM, TVShowGenre>().ConvertUsing(new CustomMapp_Genre_TVShowGenre());
             CreateMap<TVShowGenre,GenreVM>().ConvertUsing(new CustomMapp_TVShowGenre_Genre());
-            //TVShowVM -> TVShow
-            //CreateMap<TVShowVM, TVShow>().ReverseMap();
+
+            CreateMap<TVShow, TVShowCSV>().ReverseMap();
 
         }
     }

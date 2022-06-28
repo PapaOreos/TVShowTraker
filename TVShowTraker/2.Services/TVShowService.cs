@@ -1,4 +1,8 @@
 ﻿using AutoMapper;
+using CsvHelper;
+using Microsoft.Extensions.Caching.Memory;
+using System.Globalization;
+using TVShowTraker.Exceptions;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Contexts;
 using TVShowTraker.Models.Filters;
@@ -11,14 +15,18 @@ namespace TVShowTraker.Services
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
         private readonly GenreService _genreService;
+        private readonly IMemoryCache _memoryCache;
+        private readonly static string CacheTVShow = "TVShows";
 
         public TVShowService(
             ApplicationDbContext context,
-            IMapper mapper) : base(context, mapper)
+            IMapper mapper,
+            IMemoryCache memoryCache) : base(context, mapper)
         {
             _context = context;
             _mapper = mapper;
             _genreService = new GenreService(_context, _mapper);
+            _memoryCache = memoryCache;
         }
 
         public List<TVShowVM> GetAllWithFilter(TVShowFilter filter)
@@ -37,12 +45,28 @@ namespace TVShowTraker.Services
 
         public override List<TVShow> GetAll()
         {
+            #region Try get Values from Chache
+            var output = _memoryCache.Get<List<TVShow>>(CacheTVShow);
+            if (output is not null)
+            {
+                return output;
+            }
+
+            #endregion
             var list = base.GetAll();
             list.ForEach(tvshow =>
             {
                 tvshow.Episodes = GetEpisodesByTVShowId(tvshow.Id);
                 tvshow.Genres = GetGenresByTVShowId(tvshow.Id);
             });
+
+            #region MemoryCacheEntryOptions
+            _memoryCache.Set(CacheTVShow, list, TimeSpan.FromMinutes(5));
+            //var cacheOptions = new MemoryCacheEntryOptions()
+            //        .SetAbsoluteExpiration(TimeSpan.FromMinutes(5));
+            //_memoryCache.Set(CacheTVShow, output, cacheOptions); 
+            #endregion
+
             return list;
         }
 
@@ -136,6 +160,29 @@ namespace TVShowTraker.Services
             return model;
         }
 
+
+        public void ExportTVShowToCSV(int tvShowId)
+        {
+            try
+            {
+                var exportModel = _mapper.Map<TVShowCSV>(base.Get(tvShowId));
+                if (exportModel == null)
+                    return;
+                string path = Directory.GetCurrentDirectory();
+                string newPath = Path.GetFullPath(Path.Combine(path, @"..\CSV\"));
+                string file = Path.Combine(newPath, @"TVShow_" + DateTime.Now.ToString("ddMMyyyy_hhmm") + ".csv");
+                using (var writer = new StreamWriter(file))
+                using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    csvWriter.WriteHeader<TVShowCSV>();
+                    csvWriter.WriteRecords(new List<TVShowCSV>() { exportModel });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new AppException(ex.Message);
+            }
+        }
 
 
 

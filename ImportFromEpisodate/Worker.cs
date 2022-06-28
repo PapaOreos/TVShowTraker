@@ -1,6 +1,7 @@
 using AutoMapper;
 using ImportFromEpisodate.ImportModels;
 using ImportFromEpisodate.WorkerServices;
+using Microsoft.Extensions.Caching.Memory;
 using TVShowTraker.Models.Contexts;
 using TVShowTraker.Services;
 
@@ -9,17 +10,16 @@ namespace ImportFromEpisodate
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
-        private readonly ApplicationDbContext _context;
-        private readonly IMapper _mapper;
         private TVShowService _service;
 
         public Worker(
             ILogger<Worker> logger,
             ApplicationDbContext context,
-            IMapper mapper)
+            IMapper mapper,
+            IMemoryCache cache)
         {
             _logger = logger;
-            _service = new TVShowService(context, mapper);
+            _service = new TVShowService(context, mapper, cache);
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using TVShowTraker.Helpers.Exceptions;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Contexts;
@@ -18,10 +19,11 @@ namespace TVShowTraker.Controllers
 
         public TVShowController(
             ApplicationDbContext context,
-            IMapper mapper
+            IMapper mapper,
+            IMemoryCache cache
             )
         {
-            _service = new TVShowService(context, mapper);
+            _service = new TVShowService(context, mapper, cache);
         }
 
         [HttpGet]
@@ -41,7 +43,7 @@ namespace TVShowTraker.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         [Route("[action]")]
         public IActionResult GetAllWithFilter([FromBody] TVShowFilter filter)
         {
@@ -88,7 +90,6 @@ namespace TVShowTraker.Controllers
             }
         }
 
-
         [HttpPut]
         [Authorize]
         [Route("[action]")]
@@ -114,6 +115,25 @@ namespace TVShowTraker.Controllers
             {
                 var result = _service.Delete(id);
                 return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ResponseModel(ex.Message, ExceptionMessages.Fail));
+            }
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("[action]")]
+        public IActionResult ExportToCSV(int id)
+        {
+            try
+            {
+                _service.ExportTVShowToCSV(id);
+                return Ok(new ResponseModel(
+                    "CSV created into CSV folder",
+                    ExceptionMessages.Success
+                    ));
             }
             catch (Exception ex)
             {
