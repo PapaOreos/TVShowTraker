@@ -26,30 +26,19 @@ namespace TVShowTraker.Controllers
             _service = new TVShowService(context, mapper, cache);
         }
 
-        [HttpGet]
-        [Authorize]
-        [Route("[action]")]
-        public IActionResult GetAll()
-        {
-            try
-            {
-                var result = _service.GetAllVM();
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new ResponseModel(ex.Message, ExceptionMessages.Fail));
-            }
-        }
-
         [HttpPost]
         [Authorize]
         [Route("[action]")]
-        public IActionResult GetAllWithFilter([FromBody] TVShowFilter filter)
+        public IActionResult GetAll([FromBody] TVShowFilter filter)
         {
             try
             {
-                var result = _service.GetAllWithFilter(filter);
+                if (!filter.IsValid())
+                    return BadRequest(new ResponseModel(
+                        ExceptionMessages.FilterIsInvalid,
+                        ExceptionMessages.Fail
+                        ));
+                var result = _service.GetAllWithPagination(filter);
                 return Ok(result);
             }
             catch (Exception ex)

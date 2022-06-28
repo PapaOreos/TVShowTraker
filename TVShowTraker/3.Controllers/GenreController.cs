@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TVShowTraker.Helpers.Exceptions;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Contexts;
+using TVShowTraker.Models.Filters;
 using TVShowTraker.Services;
 
 namespace TVShowTraker.Controllers
@@ -38,14 +39,19 @@ namespace TVShowTraker.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Authorize]
         [Route("[action]")]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromBody] GenreFilter filter)
         {
             try
             {
-                var result = _service.GetAll();
+                if (!filter.IsValid())
+                    return BadRequest(new ResponseModel(
+                        ExceptionMessages.FilterIsInvalid,
+                        ExceptionMessages.Fail
+                        ));
+                var result = _service.GetAllWithPagination(filter);
                 return Ok(result);
             }
             catch (Exception ex)

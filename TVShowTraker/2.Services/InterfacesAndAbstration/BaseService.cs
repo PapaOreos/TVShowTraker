@@ -2,12 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using TVShowTraker.Exceptions;
 using TVShowTraker.Helpers.Exceptions;
+using TVShowTraker.Helpers.Pagination;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Contexts;
+using TVShowTraker.Models.Filters;
 
 namespace TVShowTraker.Services.Interfaces
 {
-    public abstract class BaseService<M, V> : IBaseService<M>, IDisposable where M : BaseModel where V : class
+    public abstract class BaseService<M, V, F> : IBaseService<M>, IDisposable where M : BaseModel where V : class where F : BaseFilter
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -23,6 +25,21 @@ namespace TVShowTraker.Services.Interfaces
         }
 
         #region GetAll
+        public virtual PagedResult<V> GetAllWithPagination(F filter)
+        {
+            var list = entities.AsQueryable();
+            if (!list.Any())
+                throw new AppException("There is no items");
+
+            var vmList = new List<V>();
+            list.ToList().ForEach( item =>
+            {
+                vmList.Add(_mapper.Map<V>(item));
+            });
+
+            return GetPagedService.GetPaged(vmList.AsQueryable(), filter.CurrentPage, filter.PageSize);
+        }
+
         public virtual List<V> GetAllVM()
         {
             List<V> vmList = new List<V>();
@@ -133,7 +150,7 @@ namespace TVShowTraker.Services.Interfaces
                 Message = string.Format(ExceptionMessages.ModelDeleteSuccess, typeof(M).Name),
                 Status = ExceptionMessages.Success
             };
-        } 
+        }
         #endregion
 
         public virtual void Dispose()

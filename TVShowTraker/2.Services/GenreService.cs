@@ -1,13 +1,15 @@
 ﻿using AutoMapper;
 using TVShowTraker.Helpers.Exceptions;
+using TVShowTraker.Helpers.Pagination;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Contexts;
+using TVShowTraker.Models.Filters;
 using TVShowTraker.Models.ViewModels;
 using TVShowTraker.Services.Interfaces;
 
 namespace TVShowTraker.Services
 {
-    public class GenreService : BaseService<Genre, GenreVM>
+    public class GenreService : BaseService<Genre, GenreVM, GenreFilter>
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;

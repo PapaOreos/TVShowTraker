@@ -18,5 +18,6 @@
         public static readonly string FavouritAlreadyExist = "TVShow already exist in your favourits";
         public static readonly string FavouritRemovedSuccessfully = "TVShow removed successfully from your favourits";
         public static readonly string AllFavouritsRemovedSuccessfully = "All favourits removed successfully";
+        public static readonly string FilterIsInvalid = "Filter is invalid. Please check page size and current page values";        
     }
 }

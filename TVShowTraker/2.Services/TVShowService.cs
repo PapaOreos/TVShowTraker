@@ -3,6 +3,7 @@ using CsvHelper;
 using Microsoft.Extensions.Caching.Memory;
 using System.Globalization;
 using TVShowTraker.Exceptions;
+using TVShowTraker.Helpers.Pagination;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Contexts;
 using TVShowTraker.Models.Filters;
@@ -10,7 +11,7 @@ using TVShowTraker.Models.ViewModels;
 using TVShowTraker.Services.Interfaces;
 namespace TVShowTraker.Services
 {
-    public class TVShowService : BaseService<TVShow, TVShowVM>
+    public class TVShowService : BaseService<TVShow, TVShowVM, TVShowFilter>
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -29,18 +30,21 @@ namespace TVShowTraker.Services
             _memoryCache = memoryCache;
         }
 
-        public List<TVShowVM> GetAllWithFilter(TVShowFilter filter)
+        public override PagedResult<TVShowVM> GetAllWithPagination(TVShowFilter filter)
         {
-            List<TVShowVM> vmList = new List<TVShowVM>();
-            var modelList = GetAll();
+            var list = GetAll();
             if (!string.IsNullOrEmpty(filter.TVShowName))
-                modelList = modelList.Where(t => t.Name.Contains(filter.TVShowName)).ToList();
+                list = list.ToList().Where(t => t.Name.Contains(filter.TVShowName)).ToList();
             if (filter.GenreId > 0)
-                modelList = modelList.Where(t => t.Genres.Any(g => g.GenreId == filter.GenreId)).ToList();
+                list = list.Where(t => t.Genres.Any(g => g.GenreId == filter.GenreId)).ToList();
 
-            modelList.ForEach(model => vmList.Add(_mapper.Map<TVShowVM>(model)));
+            var vmList = new List<TVShowVM>();
+            list.ToList().ForEach(item =>
+            {
+                vmList.Add(_mapper.Map<TVShowVM>(item));
+            });
 
-            return vmList;
+            return GetPagedService.GetPaged(vmList.AsQueryable(), filter.CurrentPage, filter.PageSize);
         }
 
         public override List<TVShow> GetAll()
