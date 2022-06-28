@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TVShowTraker.Helpers.Exceptions;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Contexts;
+using TVShowTraker.Models.Filters;
 using TVShowTraker.Models.ViewModels;
 using TVShowTraker.Services;
 
@@ -31,6 +32,22 @@ namespace TVShowTraker.Controllers
             try
             {
                 var result = _service.GetAllVM();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ResponseModel(ex.Message, ExceptionMessages.Fail));
+            }
+        }
+
+        [HttpPost]
+        //[Authorize]
+        [Route("[action]")]
+        public IActionResult GetAllWithFilter([FromBody] TVShowFilter filter)
+        {
+            try
+            {
+                var result = _service.GetAllWithFilter(filter);
                 return Ok(result);
             }
             catch (Exception ex)

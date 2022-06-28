@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TVShowTraker.Models.Contexts;
 
@@ -11,9 +12,10 @@ using TVShowTraker.Models.Contexts;
 namespace TVShowTraker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220627185958_AddUserFavourits")]
+    partial class AddUserFavourits
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -369,10 +371,7 @@ namespace TVShowTraker.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("ApplicationUserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ApplicationUserId1")
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("TVShowId")
@@ -380,7 +379,9 @@ namespace TVShowTraker.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId1");
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("TVShowId");
 
                     b.ToTable("UserFavourits");
                 });
@@ -486,9 +487,19 @@ namespace TVShowTraker.Migrations
 
             modelBuilder.Entity("TVShowTraker.Models.UserFavouritTVShow", b =>
                 {
-                    b.HasOne("TVShowTraker.Models.Auth.ApplicationUser", null)
+                    b.HasOne("TVShowTraker.Models.Auth.ApplicationUser", "ApplicationUser")
                         .WithMany("Favourits")
-                        .HasForeignKey("ApplicationUserId1");
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("TVShowTraker.Models.TVShow", "TVShow")
+                        .WithMany()
+                        .HasForeignKey("TVShowId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("TVShow");
                 });
 
             modelBuilder.Entity("TVShowTraker.Models.TVShow", b =>

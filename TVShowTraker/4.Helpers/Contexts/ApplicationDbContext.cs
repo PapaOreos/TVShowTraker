@@ -30,7 +30,8 @@ namespace TVShowTraker.Models.Contexts
         DbSet<ApplicationUser> User { get; set; }
         DbSet<Episode> Episodes { get; set; }
         DbSet<Genre> Genres { get; set; }
-        DbSet<TVShow> TVShows { get; set; }
+        public DbSet<TVShow> TVShows { get; set; }
         DbSet<TVShowGenre> TVShowsGenres { get; set; }
+        DbSet<UserFavouritTVShow> UserFavourits { get; set; }
     }
 }

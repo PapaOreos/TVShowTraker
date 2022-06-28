@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Principal;
 using System.Text;
 using TVShowTraker._4.Helpers.Mappers;
 using TVShowTraker.Models.Auth;

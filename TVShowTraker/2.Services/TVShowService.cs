@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Contexts;
+using TVShowTraker.Models.Filters;
 using TVShowTraker.Models.ViewModels;
 using TVShowTraker.Services.Interfaces;
 namespace TVShowTraker.Services
@@ -20,9 +21,29 @@ namespace TVShowTraker.Services
             _genreService = new GenreService(_context, _mapper);
         }
 
-        public override List<TVShowVM> GetAllVM()
+        public List<TVShowVM> GetAllWithFilter(TVShowFilter filter)
         {
-            return base.GetAllVM();
+            List<TVShowVM> vmList = new List<TVShowVM>();
+            var modelList = GetAll();
+            if (!string.IsNullOrEmpty(filter.TVShowName))
+                modelList = modelList.Where(t => t.Name.Contains(filter.TVShowName)).ToList();
+            if (filter.GenreId > 0)
+                modelList = modelList.Where(t => t.Genres.Any(g => g.GenreId == filter.GenreId)).ToList();
+
+            modelList.ForEach(model => vmList.Add(_mapper.Map<TVShowVM>(model)));
+
+            return vmList;
+        }
+
+        public override List<TVShow> GetAll()
+        {
+            var list = base.GetAll();
+            list.ForEach(tvshow =>
+            {
+                tvshow.Episodes = GetEpisodesByTVShowId(tvshow.Id);
+                tvshow.Genres = GetGenresByTVShowId(tvshow.Id);
+            });
+            return list;
         }
 
         public override TVShowVM GetVM(int id)
@@ -113,6 +134,26 @@ namespace TVShowTraker.Services
                     }));
 
             return model;
+        }
+
+
+
+
+        public Task CreateAsync(List<TVShow> showsWithDetails)
+        {
+            try
+            {
+                showsWithDetails.ForEach(show =>
+                {
+                    Create(show);
+                });
+                return Task.CompletedTask;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
     }

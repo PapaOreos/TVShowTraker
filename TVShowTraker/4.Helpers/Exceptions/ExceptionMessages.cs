@@ -14,5 +14,9 @@
         public static readonly string ModelCreateError = "Error creating {0}";
         public static readonly string ModelUpdateError = "Error Updatign {0}";
         public static readonly string ModelDeleteError = "Error deleting {0}";
+        public static readonly string FavouritAddedSuccessfully = "TVShow added successfully to your favourits";
+        public static readonly string FavouritAlreadyExist = "TVShow already exist in your favourits";
+        public static readonly string FavouritRemovedSuccessfully = "TVShow removed successfully from your favourits";
+        public static readonly string AllFavouritsRemovedSuccessfully = "All favourits removed successfully";
     }
 }

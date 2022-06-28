@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{790A1A16
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TVShowTrakerTests", "TVShowTrakerTests\TVShowTrakerTests.csproj", "{C5051085-8DCB-4483-91EF-867F36EBF764}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackGroundServices", "BackGroundServices", "{1A492BAC-BC78-49B5-B2BA-B2AAB6EABFAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImportFromEpisodate", "ImportFromEpisodate\ImportFromEpisodate.csproj", "{E8EDBBBC-6CD8-4B08-B09F-3FC44A902F4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +27,17 @@ Global
 		{C5051085-8DCB-4483-91EF-867F36EBF764}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5051085-8DCB-4483-91EF-867F36EBF764}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5051085-8DCB-4483-91EF-867F36EBF764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8EDBBBC-6CD8-4B08-B09F-3FC44A902F4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8EDBBBC-6CD8-4B08-B09F-3FC44A902F4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8EDBBBC-6CD8-4B08-B09F-3FC44A902F4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8EDBBBC-6CD8-4B08-B09F-3FC44A902F4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C5051085-8DCB-4483-91EF-867F36EBF764} = {790A1A16-B575-4811-8F52-9D824A08F8A6}
+		{E8EDBBBC-6CD8-4B08-B09F-3FC44A902F4F} = {1A492BAC-BC78-49B5-B2BA-B2AAB6EABFAA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4380D54B-D6EA-46B7-ABD3-2618298F8AE3}

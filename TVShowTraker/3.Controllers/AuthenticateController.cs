@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Principal;
+using TVShowTraker.Helpers;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Auth;
 using TVShowTraker.Services.Interfaces;
@@ -13,7 +15,7 @@ namespace TVShowTraker.Controllers
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser > _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
         private readonly IAuthenticateService _authenticate;
@@ -30,6 +32,25 @@ namespace TVShowTraker.Controllers
             _authenticate = authenticate;
         }
 
+        [HttpGet]
+        [Route("[action]")]
+        [Authorize]
+        public IActionResult GetLoggedUser()
+        {
+            try
+            {
+                var loggedUser = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (loggedUser == null)
+                    return BadRequest("Can't get logged user");
+
+                return Ok(loggedUser);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] Login model)
@@ -41,6 +62,7 @@ namespace TVShowTraker.Controllers
 
                 var authClaims = new List<Claim>
                 {
+                    new Claim(ClaimTypes.NameIdentifier, user.Id),
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
