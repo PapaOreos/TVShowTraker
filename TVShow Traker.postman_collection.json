@@ -1,0 +1,662 @@
+{
+	"info": {
+		"_postman_id": "3941de2f-15e6-4ce2-934b-ee2371a1d9ef",
+		"name": "TVShow Traker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18365926"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"manu\",\r\n  \"password\": \"Manu.1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7080/api/Authenticate/Login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"Authenticate",
+								"Login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get logged user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ2ZmJlYjEyLWRlMDEtNDEzZC05YjczLTNkZWVmMzQ2MTdiMCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJtYW51IiwianRpIjoiZWViZTdlM2UtZGM2NC00M2FhLWIyMjUtYzFjODFkZTE0ZTkzIiwiZXhwIjoxNjU2MzY4MDc4LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ._zONJ6hD0LOVhfM8_50P-sLsLfsLJT50eD1hKcy03Wc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"manu\",\r\n  \"password\": \"Manu.1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7080/api/Authenticate/GetLoggedUser",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"Authenticate",
+								"GetLoggedUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"manu\",\r\n  \"name\": \"Emanuel\",\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"Manu.1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7080/api/Authenticate/Register",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"Authenticate",
+								"Register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh_Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \r\n    \"AccessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibWFudSIsImp0aSI6IjZiYjc3ZGIyLTIxZTEtNDRmMC1iYTczLTg1ZWFhNjUxZTgyOCIsImV4cCI6MTY1NjI2NjI4MiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.yozQ5zToK2r_qiYY-26FgmlvAApW-DFfqbdJ_ypRK98\",\r\n    \"refreshToken\": \"Be4BLoI6g/uX0JoowaYGWZR93+hUPAJPlg2ESvN5lF8nh3u6m3kZ1JbND+XsTHvT3c17HHzY1NBNi5ekUN/Xrw==\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7080/api/Authenticate/Refresh-Token",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"Authenticate",
+								"Refresh-Token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Genre",
+			"item": [
+				{
+					"name": "Genre - GetAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibWFudSIsImp0aSI6IjIxZmMxNWZjLTI5ZjEtNDU4NC1hZmUwLWY0YmIxNjc3MjU3NiIsImV4cCI6MTY1NjMyNzMzNiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.HaCIf2jaVGEIGGCuoz5oHCJgBckR5xqNsSiPyHZnJJ4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7080/api/Genre/GetAll",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"Genre",
+								"GetAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Genre - Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibWFudSIsImp0aSI6IjIxZmMxNWZjLTI5ZjEtNDU4NC1hZmUwLWY0YmIxNjc3MjU3NiIsImV4cCI6MTY1NjMyNzMzNiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.HaCIf2jaVGEIGGCuoz5oHCJgBckR5xqNsSiPyHZnJJ4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"description\": \"Romance\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7080/api/Genre/Create",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"Genre",
+								"Create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Genre - Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibWFudSIsImp0aSI6IjIxZmMxNWZjLTI5ZjEtNDU4NC1hZmUwLWY0YmIxNjc3MjU3NiIsImV4cCI6MTY1NjMyNzMzNiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.HaCIf2jaVGEIGGCuoz5oHCJgBckR5xqNsSiPyHZnJJ4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"description\": \"Romance\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7080/api/Genre/Delete?id=2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"Genre",
+								"Delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TVShow",
+			"item": [
+				{
+					"name": "TVShow - GetAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ2ZmJlYjEyLWRlMDEtNDEzZC05YjczLTNkZWVmMzQ2MTdiMCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJtYW51IiwianRpIjoiMDkzMDc3NjAtMGU1ZC00M2YzLTgzZDItYTkxYmZlZjg2ZDY4IiwiZXhwIjoxNjU2NDk5OTI3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.zIguDQFb7-vyBAQtlSqhuWZcRkS-iIpevCfYQMlCapk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"currentPage\": 1,\r\n  \"pageSize\": 10,\r\n  \"tvShowName\": \"\",\r\n  \"genreId\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7080/api/TVShow/GetAll",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"TVShow",
+								"GetAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TVShow - Get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ2ZmJlYjEyLWRlMDEtNDEzZC05YjczLTNkZWVmMzQ2MTdiMCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJtYW51IiwianRpIjoiMDkzMDc3NjAtMGU1ZC00M2YzLTgzZDItYTkxYmZlZjg2ZDY4IiwiZXhwIjoxNjU2NDk5OTI3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.zIguDQFb7-vyBAQtlSqhuWZcRkS-iIpevCfYQMlCapk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7080/api/TVShow/Get?id=8",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"TVShow",
+								"Get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TVShow - Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ2ZmJlYjEyLWRlMDEtNDEzZC05YjczLTNkZWVmMzQ2MTdiMCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJtYW51IiwianRpIjoiMDkzMDc3NjAtMGU1ZC00M2YzLTgzZDItYTkxYmZlZjg2ZDY4IiwiZXhwIjoxNjU2NDk5OTI3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.zIguDQFb7-vyBAQtlSqhuWZcRkS-iIpevCfYQMlCapk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7080/api/TVShow/Delete?id=7",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"TVShow",
+								"Delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TVShow - Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ2ZmJlYjEyLWRlMDEtNDEzZC05YjczLTNkZWVmMzQ2MTdiMCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJtYW51IiwianRpIjoiMDkzMDc3NjAtMGU1ZC00M2YzLTgzZDItYTkxYmZlZjg2ZDY4IiwiZXhwIjoxNjU2NDk5OTI3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.zIguDQFb7-vyBAQtlSqhuWZcRkS-iIpevCfYQMlCapk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 0,\r\n        \"name\": \"The Flash\",\r\n        \"permalink\": \"the-flash\",\r\n        \"url\": \"https://www.episodate.com/tv-show/the-flash\",\r\n        \"description\": \"Barry Allen is a Central City police forensic scientist with a reasonably happy life, despite the childhood trauma of a mysterious red and yellow being killing his mother and framing his father. All that changes when a massive particle accelerator accident leads to Barry being struck by lightning in his lab. Coming out of coma nine months later, Barry and his new friends at STAR labs find that he now has the ability to move at superhuman speed. <br>Furthermore, Barry learns that he is but one of many affected by that event, most of whom are using their powers for evil. Determined to make a difference, Barry dedicates his life to fighting such threats, as The Flash. While he gains allies he never expected, there are also secret forces determined to aid and manipulate him for their own agenda.\",\r\n        \"description_source\": \"http://www.imdb.com/title/tt3107288/plotsummary?ref_=tt_stry_pl\",\r\n        \"start_date\": \"2014-10-07\",\r\n        \"end_date\": null,\r\n        \"country\": \"US\",\r\n        \"status\": \"Running\",\r\n        \"runtime\": 60,\r\n        \"network\": \"The CW\",\r\n        \"youtube_link\": null,\r\n        \"image_path\": \"https://static.episodate.com/images/tv-show/full/35624.jpg\",\r\n        \"image_thumbnail_path\": \"https://static.episodate.com/images/tv-show/thumbnail/35624.jpg\",\r\n        \"rating\": \"9.3531\",\r\n        \"rateCount\": \"1566\",\r\n        \"genres\": [\r\n            {\r\n              \"description\": \"Drama\"  \r\n            },\r\n            {\r\n              \"description\": \"Action\"  \r\n            },\r\n            {\r\n              \"description\": \"Science-Fiction\"  \r\n            }\r\n        ],\r\n        \"episodes\": [\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 1,\r\n                \"name\": \"Pilot\",\r\n                \"air_date\": \"2014-10-08 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 2,\r\n                \"name\": \"Fastest Man Alive\",\r\n                \"air_date\": \"2014-10-15 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 3,\r\n                \"name\": \"Things You Can't Outrun\",\r\n                \"air_date\": \"2014-10-22 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 4,\r\n                \"name\": \"Going Rogue\",\r\n                \"air_date\": \"2014-10-29 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 5,\r\n                \"name\": \"Plastique\",\r\n                \"air_date\": \"2014-11-12 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 6,\r\n                \"name\": \"The Flash Is Born\",\r\n                \"air_date\": \"2014-11-19 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 7,\r\n                \"name\": \"Power Outage\",\r\n                \"air_date\": \"2014-11-26 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 8,\r\n                \"name\": \"Flash vs. Arrow\",\r\n                \"air_date\": \"2014-12-03 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 9,\r\n                \"name\": \"The Man in the Yellow Suit\",\r\n                \"air_date\": \"2014-12-10 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 10,\r\n                \"name\": \"Revenge of the Rogues\",\r\n                \"air_date\": \"2015-01-21 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 11,\r\n                \"name\": \"The Sound and the Fury\",\r\n                \"air_date\": \"2015-01-28 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 12,\r\n                \"name\": \"Crazy for You\",\r\n                \"air_date\": \"2015-02-04 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 13,\r\n                \"name\": \"The Nuclear Man\",\r\n                \"air_date\": \"2015-02-11 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 14,\r\n                \"name\": \"Fallout\",\r\n                \"air_date\": \"2015-02-18 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 15,\r\n                \"name\": \"Out of Time\",\r\n                \"air_date\": \"2015-03-18 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 16,\r\n                \"name\": \"Rogue Time\",\r\n                \"air_date\": \"2015-03-25 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 17,\r\n                \"name\": \"Tricksters\",\r\n                \"air_date\": \"2015-04-01 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 18,\r\n                \"name\": \"All Star Team Up\",\r\n                \"air_date\": \"2015-04-15 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 19,\r\n                \"name\": \"Who Is Harrison Wells?\",\r\n                \"air_date\": \"2015-04-22 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 20,\r\n                \"name\": \"The Trap\",\r\n                \"air_date\": \"2015-04-29 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 21,\r\n                \"name\": \"Grodd Lives\",\r\n                \"air_date\": \"2015-05-06 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 22,\r\n                \"name\": \"Rogue Air\",\r\n                \"air_date\": \"2015-05-13 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 1,\r\n                \"episodeNumber\": 23,\r\n                \"name\": \"Fast Enough\",\r\n                \"air_date\": \"2015-05-20 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 1,\r\n                \"name\": \"The Man Who Saved Central City\",\r\n                \"air_date\": \"2015-10-07 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 2,\r\n                \"name\": \"Flash of Two Worlds\",\r\n                \"air_date\": \"2015-10-14 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 3,\r\n                \"name\": \"Family of Rogues\",\r\n                \"air_date\": \"2015-10-21 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 4,\r\n                \"name\": \"The Fury of Firestorm\",\r\n                \"air_date\": \"2015-10-28 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 5,\r\n                \"name\": \"The Darkness and the Light\",\r\n                \"air_date\": \"2015-11-04 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 6,\r\n                \"name\": \"Enter Zoom\",\r\n                \"air_date\": \"2015-11-11 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 7,\r\n                \"name\": \"Gorilla Warfare\",\r\n                \"air_date\": \"2015-11-18 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 8,\r\n                \"name\": \"Legends of Today\",\r\n                \"air_date\": \"2015-12-02 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 9,\r\n                \"name\": \"Running to Stand Still\",\r\n                \"air_date\": \"2015-12-09 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 10,\r\n                \"name\": \"Potential Energy\",\r\n                \"air_date\": \"2016-01-20 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 11,\r\n                \"name\": \"The Reverse-Flash Returns\",\r\n                \"air_date\": \"2016-01-27 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 12,\r\n                \"name\": \"Fast Lane\",\r\n                \"air_date\": \"2016-02-03 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 13,\r\n                \"name\": \"Welcome to Earth-2\",\r\n                \"air_date\": \"2016-02-10 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 14,\r\n                \"name\": \"Escape from Earth-2\",\r\n                \"air_date\": \"2016-02-17 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 15,\r\n                \"name\": \"King Shark\",\r\n                \"air_date\": \"2016-02-24 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 16,\r\n                \"name\": \"Trajectory\",\r\n                \"air_date\": \"2016-03-23 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 17,\r\n                \"name\": \"Flash Back\",\r\n                \"air_date\": \"2016-03-30 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 18,\r\n                \"name\": \"Versus Zoom\",\r\n                \"air_date\": \"2016-04-20 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 19,\r\n                \"name\": \"Back to Normal\",\r\n                \"air_date\": \"2016-04-27 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 20,\r\n                \"name\": \"Rupture\",\r\n                \"air_date\": \"2016-05-04 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 21,\r\n                \"name\": \"The Runaway Dinosaur\",\r\n                \"air_date\": \"2016-05-11 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 22,\r\n                \"name\": \"Invincible\",\r\n                \"air_date\": \"2016-05-18 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 2,\r\n                \"episodeNumber\": 23,\r\n                \"name\": \"The Race of His Life\",\r\n                \"air_date\": \"2016-05-25 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 1,\r\n                \"name\": \"Flashpoint\",\r\n                \"air_date\": \"2016-10-05 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 2,\r\n                \"name\": \"Paradox\",\r\n                \"air_date\": \"2016-10-12 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 3,\r\n                \"name\": \"Magenta\",\r\n                \"air_date\": \"2016-10-19 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 4,\r\n                \"name\": \"The New Rogues\",\r\n                \"air_date\": \"2016-10-26 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 5,\r\n                \"name\": \"Monster\",\r\n                \"air_date\": \"2016-11-02 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 6,\r\n                \"name\": \"Shade\",\r\n                \"air_date\": \"2016-11-16 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 7,\r\n                \"name\": \"Killer Frost\",\r\n                \"air_date\": \"2016-11-23 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 8,\r\n                \"name\": \"Invasion!\",\r\n                \"air_date\": \"2016-11-30 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 9,\r\n                \"name\": \"The Present\",\r\n                \"air_date\": \"2016-12-07 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 10,\r\n                \"name\": \"Borrowing Problems from the Future\",\r\n                \"air_date\": \"2017-01-25 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 11,\r\n                \"name\": \"Dead or Alive\",\r\n                \"air_date\": \"2017-02-01 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 12,\r\n                \"name\": \"Untouchable\",\r\n                \"air_date\": \"2017-02-08 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 13,\r\n                \"name\": \"Attack on Gorilla City\",\r\n                \"air_date\": \"2017-02-22 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 14,\r\n                \"name\": \"Attack on Central City\",\r\n                \"air_date\": \"2017-03-01 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 15,\r\n                \"name\": \"The Wrath of Savitar\",\r\n                \"air_date\": \"2017-03-08 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 16,\r\n                \"name\": \"Into the Speed Force\",\r\n                \"air_date\": \"2017-03-15 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 17,\r\n                \"name\": \"Duet\",\r\n                \"air_date\": \"2017-03-22 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 18,\r\n                \"name\": \"Abra Kadabra\",\r\n                \"air_date\": \"2017-03-29 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 19,\r\n                \"name\": \"The Once and Future Flash\",\r\n                \"air_date\": \"2017-04-26 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 20,\r\n                \"name\": \"I Know Who You Are\",\r\n                \"air_date\": \"2017-05-03 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 21,\r\n                \"name\": \"Cause and Effect\",\r\n                \"air_date\": \"2017-05-10 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 22,\r\n                \"name\": \"Infantino Street\",\r\n                \"air_date\": \"2017-05-17 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 3,\r\n                \"episodeNumber\": 23,\r\n                \"name\": \"Finish Line\",\r\n                \"air_date\": \"2017-05-24 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 1,\r\n                \"name\": \"The Flash Reborn\",\r\n                \"air_date\": \"2017-10-11 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 2,\r\n                \"name\": \"Mixed Signals\",\r\n                \"air_date\": \"2017-10-18 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 3,\r\n                \"name\": \"Luck Be a Lady\",\r\n                \"air_date\": \"2017-10-25 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 4,\r\n                \"name\": \"Elongated Journey Into Night\",\r\n                \"air_date\": \"2017-11-01 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 5,\r\n                \"name\": \"Girls Night Out\",\r\n                \"air_date\": \"2017-11-08 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 6,\r\n                \"name\": \"When Harry Met Harry…\",\r\n                \"air_date\": \"2017-11-15 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 7,\r\n                \"name\": \"Therefore I Am\",\r\n                \"air_date\": \"2017-11-22 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 8,\r\n                \"name\": \"Crisis on Earth-X, Part 3\",\r\n                \"air_date\": \"2017-11-29 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 9,\r\n                \"name\": \"Don't Run\",\r\n                \"air_date\": \"2017-12-06 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 10,\r\n                \"name\": \"The Trial of the Flash\",\r\n                \"air_date\": \"2018-01-17 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 11,\r\n                \"name\": \"The Elongated Knight Rises\",\r\n                \"air_date\": \"2018-01-24 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 12,\r\n                \"name\": \"Honey, I Shrunk Team Flash\",\r\n                \"air_date\": \"2018-01-31 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 13,\r\n                \"name\": \"True Colors\",\r\n                \"air_date\": \"2018-02-07 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 14,\r\n                \"name\": \"Subject 9\",\r\n                \"air_date\": \"2018-02-28 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 15,\r\n                \"name\": \"Enter Flashtime\",\r\n                \"air_date\": \"2018-03-07 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 16,\r\n                \"name\": \"Run, Iris, Run\",\r\n                \"air_date\": \"2018-03-14 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 17,\r\n                \"name\": \"Null and Annoyed\",\r\n                \"air_date\": \"2018-04-11 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 18,\r\n                \"name\": \"Lose Yourself\",\r\n                \"air_date\": \"2018-04-18 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 19,\r\n                \"name\": \"Fury Rogue\",\r\n                \"air_date\": \"2018-04-25 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 20,\r\n                \"name\": \"Therefore She Is\",\r\n                \"air_date\": \"2018-05-02 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 21,\r\n                \"name\": \"Harry and the Harrisons\",\r\n                \"air_date\": \"2018-05-09 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 22,\r\n                \"name\": \"Think Fast\",\r\n                \"air_date\": \"2018-05-16 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 4,\r\n                \"episodeNumber\": 23,\r\n                \"name\": \"We Are the Flash\",\r\n                \"air_date\": \"2018-05-23 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 1,\r\n                \"name\": \"Nora\",\r\n                \"air_date\": \"2018-10-10 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 2,\r\n                \"name\": \"Blocked\",\r\n                \"air_date\": \"2018-10-17 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 3,\r\n                \"name\": \"The Death of Vibe\",\r\n                \"air_date\": \"2018-10-24 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 4,\r\n                \"name\": \"News Flash\",\r\n                \"air_date\": \"2018-10-31 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 5,\r\n                \"name\": \"All Doll'd Up\",\r\n                \"air_date\": \"2018-11-14 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 6,\r\n                \"name\": \"The Icicle Cometh\",\r\n                \"air_date\": \"2018-11-21 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 7,\r\n                \"name\": \"O Come, All Ye Thankful\",\r\n                \"air_date\": \"2018-11-28 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 8,\r\n                \"name\": \"What's Past Is Prologue\",\r\n                \"air_date\": \"2018-12-05 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 9,\r\n                \"name\": \"Elseworlds, Part 1\",\r\n                \"air_date\": \"2018-12-10 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 10,\r\n                \"name\": \"The Flash & The Furious\",\r\n                \"air_date\": \"2019-01-16 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 11,\r\n                \"name\": \"Seeing Red\",\r\n                \"air_date\": \"2019-01-23 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 12,\r\n                \"name\": \"Memorabilia\",\r\n                \"air_date\": \"2019-01-30 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 13,\r\n                \"name\": \"Goldfaced\",\r\n                \"air_date\": \"2019-02-06 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 14,\r\n                \"name\": \"Cause and XS\",\r\n                \"air_date\": \"2019-02-13 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 15,\r\n                \"name\": \"King Shark vs. Gorilla Grodd\",\r\n                \"air_date\": \"2019-03-06 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 16,\r\n                \"name\": \"Failure Is an Orphan\",\r\n                \"air_date\": \"2019-03-13 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 17,\r\n                \"name\": \"Time Bomb\",\r\n                \"air_date\": \"2019-03-20 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 18,\r\n                \"name\": \"Godspeed\",\r\n                \"air_date\": \"2019-04-17 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 19,\r\n                \"name\": \"Snow Pack\",\r\n                \"air_date\": \"2019-04-24 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 20,\r\n                \"name\": \"Gone Rogue\",\r\n                \"air_date\": \"2019-05-01 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 21,\r\n                \"name\": \"The Girl with the Red Lightning\",\r\n                \"air_date\": \"2019-05-08 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 5,\r\n                \"episodeNumber\": 22,\r\n                \"name\": \"Legacy\",\r\n                \"air_date\": \"2019-05-15 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 1,\r\n                \"name\": \"Into the Void\",\r\n                \"air_date\": \"2019-10-09 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 2,\r\n                \"name\": \"A Flash of the Lightning\",\r\n                \"air_date\": \"2019-10-16 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 3,\r\n                \"name\": \"Dead Man Running\",\r\n                \"air_date\": \"2019-10-23 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 4,\r\n                \"name\": \"There Will Be Blood\",\r\n                \"air_date\": \"2019-10-30 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 5,\r\n                \"name\": \"Kiss Kiss Breach Breach\",\r\n                \"air_date\": \"2019-11-06 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 6,\r\n                \"name\": \"License to Elongate\",\r\n                \"air_date\": \"2019-11-20 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 7,\r\n                \"name\": \"The Last Temptation of Barry Allen, Part 1\",\r\n                \"air_date\": \"2019-11-27 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 8,\r\n                \"name\": \"The Last Temptation of Barry Allen, Part 2\",\r\n                \"air_date\": \"2019-12-04 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 9,\r\n                \"name\": \"Crisis on Infinite Earths: Part Three\",\r\n                \"air_date\": \"2019-12-11 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 10,\r\n                \"name\": \"Marathon\",\r\n                \"air_date\": \"2020-02-05 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 11,\r\n                \"name\": \"Love Is a Battlefield\",\r\n                \"air_date\": \"2020-02-12 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 12,\r\n                \"name\": \"A Girl Named Sue\",\r\n                \"air_date\": \"2020-02-19 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 13,\r\n                \"name\": \"Grodd Friended Me\",\r\n                \"air_date\": \"2020-02-26 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 14,\r\n                \"name\": \"Death of the Speed Force\",\r\n                \"air_date\": \"2020-03-11 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 15,\r\n                \"name\": \"The Exorcism of Nash Wells\",\r\n                \"air_date\": \"2020-03-18 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 16,\r\n                \"name\": \"So Long and Goodnight\",\r\n                \"air_date\": \"2020-04-22 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 17,\r\n                \"name\": \"Liberation\",\r\n                \"air_date\": \"2020-04-29 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 18,\r\n                \"name\": \"Pay the Piper\",\r\n                \"air_date\": \"2020-05-06 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 6,\r\n                \"episodeNumber\": 19,\r\n                \"name\": \"Success Is Assured\",\r\n                \"air_date\": \"2020-05-13 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 1,\r\n                \"name\": \"All's Well That Ends Wells\",\r\n                \"air_date\": \"2021-03-03 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 2,\r\n                \"name\": \"The Speed of Thought\",\r\n                \"air_date\": \"2021-03-10 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 3,\r\n                \"name\": \"Mother\",\r\n                \"air_date\": \"2021-03-17 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 4,\r\n                \"name\": \"Central City Strong\",\r\n                \"air_date\": \"2021-03-24 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 5,\r\n                \"name\": \"Fear Me\",\r\n                \"air_date\": \"2021-03-31 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 6,\r\n                \"name\": \"The One with the Nineties\",\r\n                \"air_date\": \"2021-04-07 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 7,\r\n                \"name\": \"Growing Pains\",\r\n                \"air_date\": \"2021-04-14 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 8,\r\n                \"name\": \"The People v. Killer Frost\",\r\n                \"air_date\": \"2021-05-05 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 9,\r\n                \"name\": \"Timeless\",\r\n                \"air_date\": \"2021-05-12 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 10,\r\n                \"name\": \"Family Matters, Part 1\",\r\n                \"air_date\": \"2021-05-19 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 11,\r\n                \"name\": \"Family Matters, Part 2\",\r\n                \"air_date\": \"2021-05-26 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 12,\r\n                \"name\": \"Good-Bye Vibrations\",\r\n                \"air_date\": \"2021-06-09 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 13,\r\n                \"name\": \"Masquerade\",\r\n                \"air_date\": \"2021-06-16 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 14,\r\n                \"name\": \"Rayo de Luz\",\r\n                \"air_date\": \"2021-06-23 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 15,\r\n                \"name\": \"Enemy at the Gates\",\r\n                \"air_date\": \"2021-06-30 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 16,\r\n                \"name\": \"P.O.W.\",\r\n                \"air_date\": \"2021-07-07 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 17,\r\n                \"name\": \"Heart of the Matter, Part 1\",\r\n                \"air_date\": \"2021-07-14 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 7,\r\n                \"episodeNumber\": 18,\r\n                \"name\": \"Heart of the Matter, Part 2\",\r\n                \"air_date\": \"2021-07-21 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 1,\r\n                \"name\": \"Armageddon, Part 1\",\r\n                \"air_date\": \"2021-11-17 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 2,\r\n                \"name\": \"Armageddon, Part 2\",\r\n                \"air_date\": \"2021-11-24 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 3,\r\n                \"name\": \"Armageddon, Part 3\",\r\n                \"air_date\": \"2021-12-01 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 4,\r\n                \"name\": \"Armageddon, Part 4\",\r\n                \"air_date\": \"2021-12-08 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 5,\r\n                \"name\": \"Armageddon, Part 5\",\r\n                \"air_date\": \"2021-12-15 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 6,\r\n                \"name\": \"Impulsive Excessive Disorder\",\r\n                \"air_date\": \"2022-03-10 01:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 7,\r\n                \"name\": \"Lockdown\",\r\n                \"air_date\": \"2022-03-17 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 8,\r\n                \"name\": \"The Fire Next Time\",\r\n                \"air_date\": \"2022-03-24 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 9,\r\n                \"name\": \"Phantoms\",\r\n                \"air_date\": \"2022-03-31 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 10,\r\n                \"name\": \"Reckless\",\r\n                \"air_date\": \"2022-04-07 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 11,\r\n                \"name\": \"Resurrection\",\r\n                \"air_date\": \"2022-04-14 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 12,\r\n                \"name\": \"Death Rises\",\r\n                \"air_date\": \"2022-04-28 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 13,\r\n                \"name\": \"Death Falls\",\r\n                \"air_date\": \"2022-05-05 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 14,\r\n                \"name\": \"Funeral for a Friend\",\r\n                \"air_date\": \"2022-05-12 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 15,\r\n                \"name\": \"Into the Still Force\",\r\n                \"air_date\": \"2022-05-19 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 16,\r\n                \"name\": \"The Curious Case of Bartholomew Allen\",\r\n                \"air_date\": \"2022-05-26 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 17,\r\n                \"name\": \"Keep It Dark\",\r\n                \"air_date\": \"2022-06-09 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 18,\r\n                \"name\": \"The Man in the Yellow Tie\",\r\n                \"air_date\": \"2022-06-16 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 19,\r\n                \"name\": \"Negative, Part 1\",\r\n                \"air_date\": \"2022-06-23 00:00:00\"\r\n            },\r\n            {\r\n                \"season\": 8,\r\n                \"episodeNumber\": 20,\r\n                \"name\": \"Negative, Part 2\",\r\n                \"air_date\": \"2022-06-30 00:00:00\"\r\n            }\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7080/api/TVShow/Create",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"TVShow",
+								"Create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TVShow - Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibWFudSIsImp0aSI6IjFhODhiNGJmLTdjZmUtNGUzNS05NjViLWY4MzllM2MwNzViOSIsImV4cCI6MTY1NjM1NzMzOCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.jxzam7h-NB6C5gMJ77Obfo6YMZQUwAVAI7ZdLG5gP5g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 6,\r\n    \"name\": \"The Flash\",\r\n    \"permalink\": \"the-flash\",\r\n    \"url\": \"https://www.episodate.com/tv-show/the-flash\",\r\n    \"description\": \"Barry Allen is a Central City police forensic scientist with a reasonably happy life, despite the childhood trauma of a mysterious red and yellow being killing his mother and framing his father. All that changes when a massive particle accelerator accident leads to Barry being struck by lightning in his lab. Coming out of coma nine months later, Barry and his new friends at STAR labs find that he now has the ability to move at superhuman speed. <br>Furthermore, Barry learns that he is but one of many affected by that event, most of whom are using their powers for evil. Determined to make a difference, Barry dedicates his life to fighting such threats, as The Flash. While he gains allies he never expected, there are also secret forces determined to aid and manipulate him for their own agenda.\",\r\n    \"startDate\": \"0001-01-01T00:00:00\",\r\n    \"endDate\": null,\r\n    \"country\": \"US\",\r\n    \"status\": \"Running\",\r\n    \"runtime\": 60,\r\n    \"network\": \"The CW\",\r\n    \"youtubeLink\": null,\r\n    \"imagePath\": \"\",\r\n    \"imageThumbnailPath\": \"\",\r\n    \"rating\": 9.35,\r\n    \"rateCount\": 1566,\r\n    \"genres\": [\r\n        {\r\n            \"id\": 1,\r\n            \"description\": \"Drama\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"description\": \"Action\"\r\n        }\r\n    ],\r\n    \"episodes\": [\r\n        {\r\n            \"id\": 343,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 1,\r\n            \"name\": \"Pilot\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 344,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 2,\r\n            \"name\": \"Fastest Man Alive\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 345,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 3,\r\n            \"name\": \"Things You Can't Outrun\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 346,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 4,\r\n            \"name\": \"Going Rogue\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 347,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 5,\r\n            \"name\": \"Plastique\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 348,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 6,\r\n            \"name\": \"The Flash Is Born\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 349,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 7,\r\n            \"name\": \"Power Outage\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 350,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 8,\r\n            \"name\": \"Flash vs. Arrow\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 351,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 9,\r\n            \"name\": \"The Man in the Yellow Suit\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 352,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 10,\r\n            \"name\": \"Revenge of the Rogues\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 353,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 11,\r\n            \"name\": \"The Sound and the Fury\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 354,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 12,\r\n            \"name\": \"Crazy for You\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 355,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 13,\r\n            \"name\": \"The Nuclear Man\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 356,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 14,\r\n            \"name\": \"Fallout\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 357,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 15,\r\n            \"name\": \"Out of Time\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 358,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 16,\r\n            \"name\": \"Rogue Time\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 359,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 17,\r\n            \"name\": \"Tricksters\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 360,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 18,\r\n            \"name\": \"All Star Team Up\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 361,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 19,\r\n            \"name\": \"Who Is Harrison Wells?\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 362,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 20,\r\n            \"name\": \"The Trap\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 363,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 21,\r\n            \"name\": \"Grodd Lives\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 364,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 22,\r\n            \"name\": \"Rogue Air\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 365,\r\n            \"season\": 1,\r\n            \"episodeNumber\": 23,\r\n            \"name\": \"Fast Enough\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 366,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 1,\r\n            \"name\": \"The Man Who Saved Central City\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 367,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 2,\r\n            \"name\": \"Flash of Two Worlds\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 368,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 3,\r\n            \"name\": \"Family of Rogues\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 369,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 4,\r\n            \"name\": \"The Fury of Firestorm\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 370,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 5,\r\n            \"name\": \"The Darkness and the Light\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 371,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 6,\r\n            \"name\": \"Enter Zoom\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 372,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 7,\r\n            \"name\": \"Gorilla Warfare\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 373,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 8,\r\n            \"name\": \"Legends of Today\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 374,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 9,\r\n            \"name\": \"Running to Stand Still\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 375,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 10,\r\n            \"name\": \"Potential Energy\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 376,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 11,\r\n            \"name\": \"The Reverse-Flash Returns\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 377,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 12,\r\n            \"name\": \"Fast Lane\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 378,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 13,\r\n            \"name\": \"Welcome to Earth-2\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 379,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 14,\r\n            \"name\": \"Escape from Earth-2\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 380,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 15,\r\n            \"name\": \"King Shark\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 381,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 16,\r\n            \"name\": \"Trajectory\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 382,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 17,\r\n            \"name\": \"Flash Back\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 383,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 18,\r\n            \"name\": \"Versus Zoom\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 384,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 19,\r\n            \"name\": \"Back to Normal\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 385,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 20,\r\n            \"name\": \"Rupture\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 386,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 21,\r\n            \"name\": \"The Runaway Dinosaur\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 387,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 22,\r\n            \"name\": \"Invincible\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 388,\r\n            \"season\": 2,\r\n            \"episodeNumber\": 23,\r\n            \"name\": \"The Race of His Life\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 389,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 1,\r\n            \"name\": \"Flashpoint\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 390,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 2,\r\n            \"name\": \"Paradox\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 391,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 3,\r\n            \"name\": \"Magenta\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 392,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 4,\r\n            \"name\": \"The New Rogues\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 393,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 5,\r\n            \"name\": \"Monster\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 394,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 6,\r\n            \"name\": \"Shade\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 395,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 7,\r\n            \"name\": \"Killer Frost\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 396,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 8,\r\n            \"name\": \"Invasion!\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 397,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 9,\r\n            \"name\": \"The Present\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 398,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 10,\r\n            \"name\": \"Borrowing Problems from the Future\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 399,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 11,\r\n            \"name\": \"Dead or Alive\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 400,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 12,\r\n            \"name\": \"Untouchable\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 401,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 13,\r\n            \"name\": \"Attack on Gorilla City\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 402,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 14,\r\n            \"name\": \"Attack on Central City\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 403,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 15,\r\n            \"name\": \"The Wrath of Savitar\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 404,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 16,\r\n            \"name\": \"Into the Speed Force\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 405,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 17,\r\n            \"name\": \"Duet\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 406,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 18,\r\n            \"name\": \"Abra Kadabra\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 407,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 19,\r\n            \"name\": \"The Once and Future Flash\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 408,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 20,\r\n            \"name\": \"I Know Who You Are\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 409,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 21,\r\n            \"name\": \"Cause and Effect\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 410,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 22,\r\n            \"name\": \"Infantino Street\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 411,\r\n            \"season\": 3,\r\n            \"episodeNumber\": 23,\r\n            \"name\": \"Finish Line\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 412,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 1,\r\n            \"name\": \"The Flash Reborn\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 413,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 2,\r\n            \"name\": \"Mixed Signals\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 414,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 3,\r\n            \"name\": \"Luck Be a Lady\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 415,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 4,\r\n            \"name\": \"Elongated Journey Into Night\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 416,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 5,\r\n            \"name\": \"Girls Night Out\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 417,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 6,\r\n            \"name\": \"When Harry Met Harry…\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 418,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 7,\r\n            \"name\": \"Therefore I Am\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 419,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 8,\r\n            \"name\": \"Crisis on Earth-X, Part 3\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 420,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 9,\r\n            \"name\": \"Don't Run\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 421,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 10,\r\n            \"name\": \"The Trial of the Flash\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 422,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 11,\r\n            \"name\": \"The Elongated Knight Rises\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 423,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 12,\r\n            \"name\": \"Honey, I Shrunk Team Flash\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 424,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 13,\r\n            \"name\": \"True Colors\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 425,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 14,\r\n            \"name\": \"Subject 9\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 426,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 15,\r\n            \"name\": \"Enter Flashtime\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 427,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 16,\r\n            \"name\": \"Run, Iris, Run\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 428,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 17,\r\n            \"name\": \"Null and Annoyed\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 429,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 18,\r\n            \"name\": \"Lose Yourself\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 430,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 19,\r\n            \"name\": \"Fury Rogue\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 431,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 20,\r\n            \"name\": \"Therefore She Is\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 432,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 21,\r\n            \"name\": \"Harry and the Harrisons\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 433,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 22,\r\n            \"name\": \"Think Fast\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 434,\r\n            \"season\": 4,\r\n            \"episodeNumber\": 23,\r\n            \"name\": \"We Are the Flash\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 435,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 1,\r\n            \"name\": \"Nora\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 436,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 2,\r\n            \"name\": \"Blocked\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 437,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 3,\r\n            \"name\": \"The Death of Vibe\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 438,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 4,\r\n            \"name\": \"News Flash\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 439,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 5,\r\n            \"name\": \"All Doll'd Up\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 440,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 6,\r\n            \"name\": \"The Icicle Cometh\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 441,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 7,\r\n            \"name\": \"O Come, All Ye Thankful\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 442,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 8,\r\n            \"name\": \"What's Past Is Prologue\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 443,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 9,\r\n            \"name\": \"Elseworlds, Part 1\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 444,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 10,\r\n            \"name\": \"The Flash & The Furious\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 445,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 11,\r\n            \"name\": \"Seeing Red\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 446,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 12,\r\n            \"name\": \"Memorabilia\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 447,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 13,\r\n            \"name\": \"Goldfaced\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 448,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 14,\r\n            \"name\": \"Cause and XS\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 449,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 15,\r\n            \"name\": \"King Shark vs. Gorilla Grodd\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 450,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 16,\r\n            \"name\": \"Failure Is an Orphan\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 451,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 17,\r\n            \"name\": \"Time Bomb\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 452,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 18,\r\n            \"name\": \"Godspeed\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 453,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 19,\r\n            \"name\": \"Snow Pack\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 454,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 20,\r\n            \"name\": \"Gone Rogue\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 455,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 21,\r\n            \"name\": \"The Girl with the Red Lightning\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 456,\r\n            \"season\": 5,\r\n            \"episodeNumber\": 22,\r\n            \"name\": \"Legacy\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 457,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 1,\r\n            \"name\": \"Into the Void\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 458,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 2,\r\n            \"name\": \"A Flash of the Lightning\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 459,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 3,\r\n            \"name\": \"Dead Man Running\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 460,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 4,\r\n            \"name\": \"There Will Be Blood\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 461,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 5,\r\n            \"name\": \"Kiss Kiss Breach Breach\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 462,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 6,\r\n            \"name\": \"License to Elongate\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 463,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 7,\r\n            \"name\": \"The Last Temptation of Barry Allen, Part 1\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 464,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 8,\r\n            \"name\": \"The Last Temptation of Barry Allen, Part 2\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 465,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 9,\r\n            \"name\": \"Crisis on Infinite Earths: Part Three\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 466,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 10,\r\n            \"name\": \"Marathon\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 467,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 11,\r\n            \"name\": \"Love Is a Battlefield\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 468,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 12,\r\n            \"name\": \"A Girl Named Sue\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 469,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 13,\r\n            \"name\": \"Grodd Friended Me\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 470,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 14,\r\n            \"name\": \"Death of the Speed Force\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 471,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 15,\r\n            \"name\": \"The Exorcism of Nash Wells\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 472,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 16,\r\n            \"name\": \"So Long and Goodnight\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 473,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 17,\r\n            \"name\": \"Liberation\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 474,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 18,\r\n            \"name\": \"Pay the Piper\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 475,\r\n            \"season\": 6,\r\n            \"episodeNumber\": 19,\r\n            \"name\": \"Success Is Assured\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 476,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 1,\r\n            \"name\": \"All's Well That Ends Wells\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 477,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 2,\r\n            \"name\": \"The Speed of Thought\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 478,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 3,\r\n            \"name\": \"Mother\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 479,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 4,\r\n            \"name\": \"Central City Strong\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 480,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 5,\r\n            \"name\": \"Fear Me\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 481,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 6,\r\n            \"name\": \"The One with the Nineties\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 482,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 7,\r\n            \"name\": \"Growing Pains\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 483,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 8,\r\n            \"name\": \"The People v. Killer Frost\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 484,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 9,\r\n            \"name\": \"Timeless\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 485,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 10,\r\n            \"name\": \"Family Matters, Part 1\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 486,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 11,\r\n            \"name\": \"Family Matters, Part 2\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 487,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 12,\r\n            \"name\": \"Good-Bye Vibrations\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 488,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 13,\r\n            \"name\": \"Masquerade\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 489,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 14,\r\n            \"name\": \"Rayo de Luz\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 490,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 15,\r\n            \"name\": \"Enemy at the Gates\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 491,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 16,\r\n            \"name\": \"P.O.W.\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 492,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 17,\r\n            \"name\": \"Heart of the Matter, Part 1\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 493,\r\n            \"season\": 7,\r\n            \"episodeNumber\": 18,\r\n            \"name\": \"Heart of the Matter, Part 2\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 494,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 1,\r\n            \"name\": \"Armageddon, Part 1\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 495,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 2,\r\n            \"name\": \"Armageddon, Part 2\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 496,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 3,\r\n            \"name\": \"Armageddon, Part 3\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 497,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 4,\r\n            \"name\": \"Armageddon, Part 4\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 498,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 5,\r\n            \"name\": \"Armageddon, Part 5\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 499,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 6,\r\n            \"name\": \"Impulsive Excessive Disorder\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 500,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 7,\r\n            \"name\": \"Lockdown\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 501,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 8,\r\n            \"name\": \"The Fire Next Time\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 502,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 9,\r\n            \"name\": \"Phantoms\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 503,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 10,\r\n            \"name\": \"Reckless\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 504,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 11,\r\n            \"name\": \"Resurrection\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 505,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 12,\r\n            \"name\": \"Death Rises\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 506,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 13,\r\n            \"name\": \"Death Falls\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 507,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 14,\r\n            \"name\": \"Funeral for a Friend\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 508,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 15,\r\n            \"name\": \"Into the Still Force\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 509,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 16,\r\n            \"name\": \"The Curious Case of Bartholomew Allen\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 510,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 17,\r\n            \"name\": \"Keep It Dark\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 511,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 18,\r\n            \"name\": \"The Man in the Yellow Tie\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 512,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 19,\r\n            \"name\": \"Negative, Part 1\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        },\r\n        {\r\n            \"id\": 513,\r\n            \"season\": 8,\r\n            \"episodeNumber\": 20,\r\n            \"name\": \"Negative, Part 2\",\r\n            \"airDate\": \"0001-01-01T00:00:00\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7080/api/TVShow/Update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"TVShow",
+								"Update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserFavourit",
+			"item": [
+				{
+					"name": "UserFavourit - GetUserFavourits",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ2ZmJlYjEyLWRlMDEtNDEzZC05YjczLTNkZWVmMzQ2MTdiMCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJtYW51IiwianRpIjoiMDkzMDc3NjAtMGU1ZC00M2YzLTgzZDItYTkxYmZlZjg2ZDY4IiwiZXhwIjoxNjU2NDk5OTI3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.zIguDQFb7-vyBAQtlSqhuWZcRkS-iIpevCfYQMlCapk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7080/api/UserFavourits/GetUserFavourits?userId=d6fbeb12-de01-413d-9b73-3deef34617b0",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"UserFavourits",
+								"GetUserFavourits"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "d6fbeb12-de01-413d-9b73-3deef34617b0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserFavourit - AddFavourit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ2ZmJlYjEyLWRlMDEtNDEzZC05YjczLTNkZWVmMzQ2MTdiMCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJtYW51IiwianRpIjoiMDkzMDc3NjAtMGU1ZC00M2YzLTgzZDItYTkxYmZlZjg2ZDY4IiwiZXhwIjoxNjU2NDk5OTI3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.zIguDQFb7-vyBAQtlSqhuWZcRkS-iIpevCfYQMlCapk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ApplicationUserId\": \"d6fbeb12-de01-413d-9b73-3deef34617b0\",\r\n    \"TVShowId\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7080/api/UserFavourits/AddFavourit",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"UserFavourits",
+								"AddFavourit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserFavourit - RemoveFavourit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ2ZmJlYjEyLWRlMDEtNDEzZC05YjczLTNkZWVmMzQ2MTdiMCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJtYW51IiwianRpIjoiMDkzMDc3NjAtMGU1ZC00M2YzLTgzZDItYTkxYmZlZjg2ZDY4IiwiZXhwIjoxNjU2NDk5OTI3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.zIguDQFb7-vyBAQtlSqhuWZcRkS-iIpevCfYQMlCapk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ApplicationUserId\": \"d6fbeb12-de01-413d-9b73-3deef34617b0\",\r\n    \"TVShowId\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7080/api/UserFavourits/RemoveFavourit",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"UserFavourits",
+								"RemoveFavourit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserFavourit - RemoveAllFavourit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ2ZmJlYjEyLWRlMDEtNDEzZC05YjczLTNkZWVmMzQ2MTdiMCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJtYW51IiwianRpIjoiMDkzMDc3NjAtMGU1ZC00M2YzLTgzZDItYTkxYmZlZjg2ZDY4IiwiZXhwIjoxNjU2NDk5OTI3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAifQ.zIguDQFb7-vyBAQtlSqhuWZcRkS-iIpevCfYQMlCapk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7080/api/UserFavourits/RemoveAllFavourits?userId=d6fbeb12-de01-413d-9b73-3deef34617b0",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"api",
+								"UserFavourits",
+								"RemoveAllFavourits"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "d6fbeb12-de01-413d-9b73-3deef34617b0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Values_Test",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibWFudSIsImp0aSI6IjZiYjc3ZGIyLTIxZTEtNDRmMC1iYTczLTg1ZWFhNjUxZTgyOCIsImV4cCI6MTY1NjI2NjgwOCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjpbImh0dHA6Ly9sb2NhbGhvc3Q6NDIwMCIsImh0dHA6Ly9sb2NhbGhvc3Q6NDIwMCJdfQ.zfB-JqyyvGwC3I5viUhzvn2tTM4NNM5gbP0yEPffuwY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7080/api/Values/Values",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Values",
+						"Values"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

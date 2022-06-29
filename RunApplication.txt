@@ -6,7 +6,7 @@ Run Application:
 
 To run the application, first you need to have a database and insure that the connection string in "appsettings.json" points to your database.
 After that you can run the application localy normaly and use the available endpoints that you can see in Swagger.
-To make it easear to test the API I add a collection of some of the main endpoints that you can import in Postman.
+To make it easear to test the API I add a collection of some of the main endpoints that you can import in Postman (TVShow Traker.postman_collection).
 The first endpoint you have to use is to Register a User.
 Remember, All the endpoints are secured with token so you have to make login request to get the token and put it on every request.
 
