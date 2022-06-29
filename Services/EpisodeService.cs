@@ -1,5 +1,6 @@
 ﻿
 using AutoMapper;
+using Helpers.Contexts;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Contexts;
 using TVShowTraker.Models.Filters;
