@@ -3,7 +3,7 @@ using TVShowTraker.Helpers.Mappers;
 using TVShowTraker.Models;
 using TVShowTraker.Models.ViewModels;
 
-namespace TVShowTraker._4.Helpers.Mappers
+namespace TVShowTraker.Helpers.Mappers
 {
     public class AutoMapperProfile : Profile
     {

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using TVShowTraker.Helpers.Exceptions;
-using TVShowTraker.Helpers.Pagination;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Contexts;
 using TVShowTraker.Models.Filters;
@@ -36,10 +35,5 @@ namespace TVShowTraker.Services
 
         public Genre? GetByGenreDescription(string description) =>
             _context.Set<Genre>().FirstOrDefault(x => x.Description == description);
-
-        public override void Dispose()
-        {
-            _context.Dispose();
-        }
     }
 }

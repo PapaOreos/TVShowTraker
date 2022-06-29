@@ -4,9 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
-using System.Security.Principal;
 using System.Text;
-using TVShowTraker._4.Helpers.Mappers;
+using TVShowTraker.Helpers.Mappers;
 using TVShowTraker.Models.Auth;
 using TVShowTraker.Models.Contexts;
 using TVShowTraker.Services;
@@ -27,6 +26,7 @@ ConfigurationManager configuration = builder.Configuration;
 builder.Services.AddScoped<IAuthenticateService, AuthenticateService>();
 builder.Services.AddScoped<IMemoryCache, MemoryCache>();
 
+builder.Services.AddMemoryCache();
 
 // For Entity Framework
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ConnStr")));

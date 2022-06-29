@@ -27,11 +27,11 @@ namespace TVShowTraker.Models.Contexts
                 .HasForeignKey(sc => sc.GenreId);
         }
 
-        DbSet<ApplicationUser> User { get; set; }
-        DbSet<Episode> Episodes { get; set; }
-        DbSet<Genre> Genres { get; set; }
-        DbSet<TVShow> TVShows { get; set; }
-        DbSet<TVShowGenre> TVShowsGenres { get; set; }
-        DbSet<UserFavouritTVShow> UserFavourits { get; set; }
+        public DbSet<ApplicationUser> User { get; set; }
+        public DbSet<Episode> Episodes { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<TVShow> TVShows { get; set; }
+        public DbSet<TVShowGenre> TVShowsGenres { get; set; }
+        public DbSet<UserFavouritTVShow> UserFavourits { get; set; }
     }
 }
