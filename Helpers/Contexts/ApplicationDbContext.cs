@@ -1,13 +1,18 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Helpers.Contexts;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TVShowTraker.Models.Auth;
 
 namespace TVShowTraker.Models.Contexts
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>, IApplicationDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
+
+        public ApplicationDbContext()
         {
         }
 
@@ -27,11 +32,18 @@ namespace TVShowTraker.Models.Contexts
                 .HasForeignKey(sc => sc.GenreId);
         }
 
-        DbSet<ApplicationUser> User { get; set; }
-        DbSet<Episode> Episodes { get; set; }
-        DbSet<Genre> Genres { get; set; }
-        DbSet<TVShow> TVShows { get; set; }
-        DbSet<TVShowGenre> TVShowsGenres { get; set; }
-        DbSet<UserFavouritTVShow> UserFavourits { get; set; }
+        public void MarkAsModified(Genre item)
+        {
+            Entry(item).State = EntityState.Modified;
+        }
+
+        public DbSet<ApplicationUser> User { get; set; }
+        public DbSet<Episode> Episodes { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<TVShow> TVShows { get; set; }
+        public DbSet<TVShowGenre> TVShowsGenres { get; set; }
+        public DbSet<UserFavouritTVShow> UserFavourits { get; set; }
+
+        public System.Data.Entity.DbSet<Genre> Genress { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿
 using AutoMapper;
+using Helpers.Contexts;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Contexts;
 using TVShowTraker.Models.Filters;
@@ -19,11 +20,6 @@ namespace TVShowTraker.Services
         {
             _context = context;
             _mapper = mapper;
-        }
-
-        public override void Dispose()
-        {
-            _context.Dispose();
         }
     }
 }

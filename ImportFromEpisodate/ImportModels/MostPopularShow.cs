@@ -18,4 +18,12 @@ namespace ImportFromEpisodate.ImportModels
         public string status { get; set; } = string.Empty;
         public string image_thumbnail_path { get; set; } = string.Empty;
     }
+
+    internal class MostPopularShowResponse
+    {
+        public string total { get; set; } = string.Empty;
+        public int page { get; set; } = 0;
+        public int Pages { get; set; } = 0;
+        public List<MostPopularShow> tv_shows { get; set; } = new List<MostPopularShow>();
+    }
 }

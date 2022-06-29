@@ -65,7 +65,8 @@ namespace TVShowTraker.Services
             });
 
             #region MemoryCacheEntryOptions
-            _memoryCache.Set(CacheTVShow, list, TimeSpan.FromMinutes(5));
+            var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(9999));
+            var set = _memoryCache.Set(CacheTVShow, list, cacheEntryOptions);
             //var cacheOptions = new MemoryCacheEntryOptions()
             //        .SetAbsoluteExpiration(TimeSpan.FromMinutes(5));
             //_memoryCache.Set(CacheTVShow, output, cacheOptions); 

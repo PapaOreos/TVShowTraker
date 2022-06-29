@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Principal;
-using TVShowTraker.Helpers;
 using TVShowTraker.Models;
 using TVShowTraker.Models.Auth;
 using TVShowTraker.Services.Interfaces;
